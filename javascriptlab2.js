@@ -11,8 +11,6 @@ function javalab2() {
         console.log("Let's Play " + userName);
 
         function startCombat() {
-            prompt(`Would you like to continue`)
-
             function getDamage() {
                 Math.floor(Math.random() * 4) + 1
             };
@@ -43,35 +41,39 @@ function javalab2() {
                     console.log(this.name, 'health is', this.userHP);
                 }
             }
-
             var round = 1;
-            almightyGrant = 10;
-            user = 40;
-            userHP = user - getDamage();
-
             /*The start of the actual loop within the getDamage function. Still 
             have to figure how to add prompt after each round that will ask "attack" || "quit" */
-            do {
-                while (almightyGrant > 0) {
-                    if (almightyGrant > 0 && userHP > 0) {
-                        console.log(`${User} and ${Grant}`);
-                    }
+            while (Grant > 0 && User > 0) {
+                console.log(`${User} and ${Grant}`);
+            }
+            round = round + 1;
+            if (Grant < User) {
+                userWins = userWins + 1;
+            }
+            if (User <= 0) {
+                console.log('Defeated');
+            } else if (Grant <= 0) {
+                Grant = 10;
+            } else if (Grant >= 0 && userWins < 3) {
+                fight = prompt(`Would you like to attack or quit? [attack] or [quit]`)
+                if (fight === "attack") {
+                    Grant && User
+                } else if (fight === "quit") {
+                    Grant && User === 0
                 }
-                if (almightyGrant < userHP) {
-                    userWins = userWins + 1;
-                }
-                if (almightyGrant <= 0) {
-                    almightyGrant = 10;
-                }
-                round = round + 1;
-            } while (round <= 3);
-            if (userWins === 3) {
-                console.log("You Win");
-            } else {
-                console.log("You lose");
-            };
+            }
+            if (Grant <= 0 && User >= 0 && userWins === 3) {
+                console.log('You Win')
+            }
         }
-        startCombat();
+        while (round <= 3);
+        if (userWins === 3) {
+            console.log("You Win");
+        } else {
+            console.log("You lose");
+        };
     }
 }
-javalab2();
+startCombat();
+javalab2()
